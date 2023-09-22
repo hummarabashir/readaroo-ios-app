@@ -14,7 +14,9 @@ import {
   Text,
   useColorScheme,
   View,
+  Pressable,
   Image,
+  Alert,
   ImageBackground,
 } from 'react-native';
 
@@ -40,6 +42,9 @@ export default function App() {
   return (
     <>
      <StatusBar style="light" />
+     <SafeAreaView style={styles.container}>
+     <ScrollView style={styles.scrollView}>
+
     <View style={styles.container}>
    <SvgXml xml={xml} style={styles.blob}/>
     {/* <ImageBackground source={require('./assets/images/blob.svg')} resizeMode="cover" style={styles.bgimage}> */}
@@ -56,18 +61,54 @@ export default function App() {
                 </View>
                 {/* </ImageBackground> */}
                 <Greetings/>
-                <View style={styles.box}>
-                  <View>
-                  <Text>Phase 2</Text>
+                <Pressable style={styles.box}   title="Press me"
+        onPress={() => Alert.alert('Phase 2')}>
+                  <View style={{width: "60%"}}>
+                  <Text style={styles.heading}>Phase 2</Text>
                   <Text>19 Letters</Text>
                   </View>
-                  <View>
-                  <Image style={{width:20, height: 20}}
+                  <View style={{width: "40%"}}>
+                  <Image style={styles.boxImage}
                   source={require('./assets/images/bee-logo.png')}/>
                   </View>
+                </Pressable>
 
+                <View style={styles.box2}>
+                  <View style={{width: "60%"}}>
+                  <Text style={styles.heading}>Phase 2</Text>
+                  <Text>25 Letters</Text>
+                  </View>
+                  <View style={{width: "40%"}}>
+                  <Image style={styles.boxImage}
+                  source={require('./assets/images/bee-logo.png')}/>
+                  </View>
                 </View>
+
+                <View style={styles.box3}>
+                  <View style={{width: "60%"}}>
+                  <Text style={styles.heading}>Phase 3</Text>
+                  <Text>22 Letters</Text>
+                  </View>
+                  <View style={{width: "40%"}}>
+                  <Image style={styles.boxImage}
+                  source={require('./assets/images/bee-logo.png')}/>
+                  </View>
+                </View>
+
+                <View style={styles.box4}>
+                  <View style={{width: "60%"}}>
+                  <Text style={styles.heading}>Games</Text>
+                  <Text>Practice your sounds</Text>
+                  </View>
+                  <View style={{width: "40%"}}>
+                  <Image style={styles.boxImage}
+                  source={require('./assets/images/bee-logo.png')}/>
+                  </View>
+                </View>
+
     </View>
+    </ScrollView>
+    </SafeAreaView>
     </>
   )};
   var styles = StyleSheet.create({
@@ -117,14 +158,54 @@ logocontainer: {
   alignItems: 'center',
   justifyContent: 'center',
 },
+heading: {
+ fontWeight: "bold",
+ paddingBottom: 3,
+},
 box: {
   backgroundColor: '#6b74e0',
   width: 200,
   borderRadius: 16,
-  padding: 10,
+  padding: 20,
   color: '#ffffff',
   marginTop: 30,
   flexDirection: 'row',
   flexWrap: 'wrap',
+},
+box2: {
+  backgroundColor: '#11c684',
+  width: 200,
+  borderRadius: 16,
+  padding: 20,
+  color: '#ffffff',
+  marginTop: 30,
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+},
+box3: {
+  backgroundColor: '#0671d5',
+  width: 200,
+  borderRadius: 16,
+  padding: 20,
+  color: '#ffffff',
+  marginTop: 30,
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+},
+box4: {
+  backgroundColor: '#f878b5',
+  width: 200,
+  borderRadius: 16,
+  padding: 20,
+  color: '#ffffff',
+  marginTop: 30,
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+},
+boxImage: {
+  width: 30,
+  height: 30,
+  marginLeft: 40,
+  marginTop: 20,
 }
 });

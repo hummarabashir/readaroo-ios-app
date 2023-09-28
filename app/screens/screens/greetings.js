@@ -22,6 +22,7 @@ var styles = StyleSheet.create({
     greetings: {
         fontSize: 14,
         color: '#ffffff',
-        marginTop: 20
+        marginTop: 20,
+        textAlign: 'center'
       }
 });

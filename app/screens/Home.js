@@ -29,9 +29,10 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { SvgXml } from 'react-native-svg';
+import { SvgXml, ClipPath } from 'react-native-svg';
 import Greetings from './screens/greetings';
 import { createStackNavigator } from '@react-navigation/native-stack';
+import { before } from 'node:test';
 
 
 const Home = ({navigation}) => (
@@ -59,10 +60,10 @@ const Home = ({navigation}) => (
                 {/* <TouchableOpacity onPress={() => this.props.navigation.navigate('Buttons')}>
                     <Text>Let's GO -></Text>
 </TouchableOpacity> */}
-<View style={styles.btn}>
-  <Button color="#ffffff"
+<View style={styles.hexagon}>
+  <Button  color="#ffffff"
 
-        title="Let's Go ->"
+        title="Little 2 Trivia"
         onPress={() => navigation.navigate('Buttons')}
       />
       </View>
@@ -135,6 +136,16 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   marginTop: 10,
   width: "90%",
+  },
+  hexagon: {
+    backgroundColor: "#f7bf31",
+      ClipPath: "polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0 50%)",
+      color: "#000",
+      fontSize: "1.125rem",
+      fontWeight: 600,
+      height: "60px",
+      textAlign: "center",
+      width: "60px"
   }
 });
 

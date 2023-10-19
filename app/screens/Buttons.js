@@ -61,8 +61,7 @@ const xml = `
                   {/* <SvgXml xml={xml} style={styles.svg}/> */}
                   </View>
                 </Pressable>
-
-                <View style={styles.box2}>
+                <Pressable style={styles.box2} onPress={() => navigation.navigate('Phase3')}>
                   <View style={{width: "60%"}}>
                   <Text style={styles.heading}>Phase 3</Text>
                   <Text style={styles.phrasetext}>25 Letters</Text>
@@ -71,7 +70,7 @@ const xml = `
                   <Image style={styles.boxImage}
                   source={require('../assets/images/leaf.png')}/>
                   </View>
-                </View>
+                </Pressable>
 
                 <View style={styles.box3}>
                   <View style={{width: "60%"}}>

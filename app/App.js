@@ -13,6 +13,7 @@ import Home from './screens/Home';
 import Buttons from './screens/Buttons';
 import Phase2 from './screens/Phase2';
 import Phase3 from './screens/Phase3';
+import Phase5 from './screens/Phase5';
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
@@ -27,7 +28,8 @@ export default function App() {
           <Stack.Screen name="Home" component = {Home} /> 
           <Stack.Screen name="Buttons" component = {Buttons} /> 
           <Stack.Screen name="Phase2" component = {Phase2} />
-          <Stack.Screen name="Phase3" component = {Phase3} /> 
+          <Stack.Screen name="Phase3" component = {Phase3} />
+          <Stack.Screen name="Phase5" component = {Phase5} />
 
         </Stack.Navigator> 
       </NavigationContainer> 

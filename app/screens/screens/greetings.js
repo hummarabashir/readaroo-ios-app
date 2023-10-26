@@ -23,6 +23,7 @@ var styles = StyleSheet.create({
         fontSize: 14,
         color: '#ffffff',
         marginTop: 20,
-        textAlign: 'center'
+        textAlign: 'center',
+        marginBottom: 40
       }
 });

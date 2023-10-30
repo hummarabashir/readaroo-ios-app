@@ -40,7 +40,7 @@ const xml = `
 
     return (
     <>
-     <StatusBar style="light" />
+     <StatusBar barStyle= "dark-content" hidden= {false} backgroundColor="#00BCD4" translucent= {true} />
      <SafeAreaView style={styles.container}>
      <ScrollView style={styles.scrollView}>
 
@@ -72,7 +72,7 @@ const xml = `
                   </View>
                 </Pressable>
 
-                <View style={styles.box3}>
+                <Pressable style={styles.box3} onPress={() => navigation.navigate('Phase5')}>
                   <View style={{width: "60%"}}>
                   <Text style={styles.heading}>Phase 5</Text>
                   <Text style={styles.phrasetext}>22 Letters</Text>
@@ -81,7 +81,7 @@ const xml = `
                   <Image style={styles.boxImage}
                   source={require('../assets/images/butterfly.png')}/>
                   </View>
-                </View>
+                </Pressable>
 
                 <View style={styles.box4}>
                   <View style={{width: "60%"}}>

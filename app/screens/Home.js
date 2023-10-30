@@ -60,13 +60,21 @@ const Home = ({navigation}) => (
                 {/* <TouchableOpacity onPress={() => this.props.navigation.navigate('Buttons')}>
                     <Text>Let's GO -></Text>
 </TouchableOpacity> */}
-<View style={styles.hexagon}>
+{/* <View style={styles.hexagon}>
   <Button  color="#ffffff"
 
         title="Little 2 Trivia"
         onPress={() => navigation.navigate('Buttons')}
       />
+      </View> */}
+      <TouchableOpacity style={styles.hexagon} onPress={() => navigation.navigate('Buttons')}>
+      <View style={styles.hexagonInner}>
+        <Text style={styles.hexagonText}>Little 2</Text>
       </View>
+      <View style={styles.hexagonBefore}></View>
+      <View style={styles.hexagonAfter}></View>
+    </TouchableOpacity>
+
       </View>
 
     </ImageBackground>
@@ -130,23 +138,56 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  btn: {
-    borderWidth: 2,
-    borderColor: '#f7bf31',
-    borderRadius: 5,
-  marginTop: 10,
-  width: "90%",
-  },
+
   hexagon: {
+    width: 80,
+    height: 40,
     backgroundColor: "#f7bf31",
-      ClipPath: "polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0 50%)",
-      color: "#000",
-      fontSize: "1.125rem",
-      fontWeight: 600,
-      height: "60px",
-      textAlign: "center",
-      width: "60px"
-  }
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 20,
+  },
+  hexagonInner: {
+    width: 80,
+    height: 40,
+    backgroundColor: "#f7bf31",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+  },
+  hexagonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  hexagonBefore: {
+    position: "absolute",
+    top: -25,
+    left: 0,
+    width: 0,
+    height: 0,
+    borderStyle: "solid",
+    borderLeftWidth: 40,
+    borderLeftColor: "transparent",
+    borderRightWidth: 40,
+    borderRightColor: "transparent",
+    borderBottomWidth: 25,
+    borderBottomColor: "#FFC107",
+  },
+  hexagonAfter: {
+    position: "absolute",
+    bottom: -25,
+    left: 0,
+    width: 0,
+    height: 0,
+    borderStyle: "solid",
+    borderLeftWidth: 40,
+    borderLeftColor: "transparent",
+    borderRightWidth: 40,
+    borderRightColor: "transparent",
+    borderTopWidth: 25,
+    borderTopColor: "#FFC107",
+  },
 });
 
 export default Home;

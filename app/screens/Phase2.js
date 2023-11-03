@@ -32,6 +32,38 @@ const alphabetSounds = {
   // Add more letters and their corresponding sound files here
 };
 
+const alphabetColors = {
+  a: "#f878b5", // pink
+  b: "#0671d5", // blue
+  c: "#11c684", // green
+  d: "#6cdfef",
+  e: "#f7bf31",
+  f: "#6b74e0", //purple
+  g: "#f7bf31", //yellow
+  h: "#0671d5",
+  i: "#f878b5",
+  j: "#6cdfef", //lightblue
+  k: "#11c684",
+  l: "#f878b5",
+  m: "#6b74e0",
+  n: "#0671d5",
+  o: "#6cdfef",
+  p: "#f7bf31",
+  q: "#f878b5",
+  r: "#11c684",
+  s: "#0671d5",
+  t: "#6b74e0",
+  u: "#6cdfef",
+  v: "#f7bf31",
+  w: "#f878b5",
+  x: "#11c684",
+  y: "#0671d5",
+  z: "#6b74e0",
+
+
+  // Add more letters and their corresponding colors here
+};
+
 export default function App() {
   const [sound, setSound] = useState(null);
 
@@ -65,7 +97,7 @@ export default function App() {
         {Object.keys(alphabetSounds).map((letter) => (
           <TouchableOpacity
             key={letter}
-            style={[styles.letterButton, {backgroundColor:getRandomColor()}]}
+            style={[styles.letterButton, { backgroundColor: alphabetColors[letter] }]}
             onPress={() => playSound(letter)}
             onLongPress={stopSound}
           >

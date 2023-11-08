@@ -83,7 +83,7 @@ const xml = `
                   </View>
                 </Pressable>
 
-                <View style={styles.box4}>
+                <Pressable style={styles.box4} onPress={() => navigation.navigate('Phase')}>
                   <View style={{width: "60%"}}>
                   <Text style={styles.heading}>Games</Text>
                   <Text style={styles.phrasetext}>Practice your sounds</Text>
@@ -92,7 +92,7 @@ const xml = `
                   <Image style={styles.boxImage}
                   source={require('../assets/images/flower.png')}/>
                   </View>
-                </View>
+                </Pressable>
 
     </View>
     </ScrollView>

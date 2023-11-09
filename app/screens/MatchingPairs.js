@@ -105,7 +105,7 @@ const MemoryMatchingPairsGame = () => {
           <Text style={styles.resetButtonText}>Play again</Text>
         </TouchableOpacity>
       </View>
-          <Text style={styles.winText}>Congratulations! You won!</Text>
+          {/* <Text style={styles.winText}>Congratulations! You won!</Text> */}
         </View>
       )}
     </View>
@@ -117,15 +117,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#1f354b",
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
+    paddingTop: 80
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
     width: '100%',
-    paddingHorizontal: 20,
-    marginBottom: 20,
+    marginTop: 30,
   },
   resetButton: {
     backgroundColor: '#ccc',
@@ -161,6 +160,7 @@ const styles = StyleSheet.create({
   cardText: {
     fontSize: 24,
     fontWeight: 'bold',
+    top: 28
   },
   cardImage: {
     width: 60,

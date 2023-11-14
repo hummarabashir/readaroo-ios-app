@@ -7,14 +7,14 @@ const MemoryMatchingPairsGame = () => {
       { id: 2, data: 'B', value: 'B', type: 'letter', visible: false },
       { id: 3, data: 'C', value: 'C', type: 'letter', visible: false },
       { id: 4, data: 'D', value: 'D', type: 'letter', visible: false },
-      { id: 5, data: 'E', value: 'E', type: 'letter', visible: false },
-      { id: 6,  data: 'F', value: 'F', type: 'letter', visible: false },
+      { id: 5, data: 'L', value: 'L', type: 'letter', visible: false },
+      { id: 6,  data: 'I', value: 'I', type: 'letter', visible: false },
       { id: 7, data: 'C', value: require('../assets/images/quizimages/cat.png'), type: 'image', visible: false },
       { id: 8, data: 'B', value: require('../assets/images/quizimages/bus.png'), type: 'image', visible: false },
       { id: 9, data: 'A', value: require('../assets/images/quizimages/socks.png'), type: 'image', visible: false },
       { id: 10, data: 'D', value: require('../assets/images/quizimages/duck.png'), type: 'image', visible: false },
-      { id: 11, data: 'E', value: require('../assets/images/quizimages/leaf.png'), type: 'image', visible: false },
-      { id: 12, data: 'F', value: require('../assets/images/quizimages/igloo.png'), type: 'image', visible: false },
+      { id: 11, data: 'L', value: require('../assets/images/quizimages/leaf.png'), type: 'image', visible: false },
+      { id: 12, data: 'I', value: require('../assets/images/quizimages/igloo.png'), type: 'image', visible: false },
     ]);
 
   const [selectedCards, setSelectedCards] = useState([]);

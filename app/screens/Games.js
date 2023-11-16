@@ -40,6 +40,8 @@ import Greetings from './screens/greetings';
      <ScrollView style={styles.scrollView}>
 
     <View style={styles.container}>
+    <ImageBackground source={require('../assets/images/blob3.png')} resizeMode="contain"   style={styles.bgimage}>
+    <View style={styles.pressbox}>
 
                 <Pressable style={styles.box} onPress={() => navigation.navigate('Quiz')}>
                   <View>
@@ -75,7 +77,8 @@ import Greetings from './screens/greetings';
                   <Text style={styles.phrasetextBlack}>Phase 2</Text>
                   </View>
                 </Pressable>
-
+                </View>
+</ImageBackground>
     </View>
     </ScrollView>
     </SafeAreaView>
@@ -91,6 +94,10 @@ import Greetings from './screens/greetings';
       height: '100%',
       backgroundColor: '#1f354b',
       fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif'
+    },
+    bgimage: {
+      flex: 1,
+      justifyContent: 'center',
     },
     image: {
     width: 50,
@@ -108,7 +115,7 @@ phrasetext: {
   fontSize: 13,
 },
 headingBlack: {
-    fontWeight: "bold",
+  fontWeight: "bold",
   paddingBottom: 3,
   color: '#000',
   fontSize: 18
@@ -117,13 +124,18 @@ phrasetextBlack: {
     color: '#000',
     fontSize: 13,
   },
+  pressbox: {
+    width: 350,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 box: {
   backgroundColor: '#6b74e0',
   width: 180,
   borderRadius: 16,
   padding: 20,
   color: '#ffffff',
-  marginTop: 30,
+  marginTop: 50,
   flexDirection: 'row',
   flexWrap: 'wrap',
 },
@@ -133,7 +145,7 @@ box2: {
   borderRadius: 16,
   padding: 20,
   color: '#000000',
-  marginTop: 30,
+  marginTop: 20,
   flexDirection: 'row',
   flexWrap: 'wrap',
 },
@@ -143,7 +155,7 @@ box3: {
   borderRadius: 16,
   padding: 20,
   color: '#ffffff',
-  marginTop: 30,
+  marginTop: 20,
   flexDirection: 'row',
   flexWrap: 'wrap',
 },
@@ -153,7 +165,7 @@ box4: {
   borderRadius: 16,
   padding: 20,
   color: '#ffffff',
-  marginTop: 30,
+  marginTop: 20,
   flexDirection: 'row',
   flexWrap: 'wrap',
 },
@@ -163,7 +175,7 @@ box5: {
     borderRadius: 16,
     padding: 20,
     color: '#000000',
-    marginTop: 30,
+    marginTop: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
   },

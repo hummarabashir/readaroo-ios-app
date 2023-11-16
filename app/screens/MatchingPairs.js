@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ImageBackground } from 'react-native';
 
 const MemoryMatchingPairsGame = () => {
     const [cards, setCards] = useState([
-      { id: 1, data: 'R', value: 'r', type: 'letter', visible: false },
-      { id: 2, data: 'H', value: 'h', type: 'letter', visible: false },
-      { id: 3, data: 'A', value: 'a', type: 'letter', visible: false },
-      { id: 4, data: 'C', value: 'c', type: 'letter', visible: false },
-      { id: 5, data: 'F', value: 'f', type: 'letter', visible: false },
-      { id: 6,  data: 'S', value: 's', type: 'letter', visible: false },
-      { id: 7, data: 'C', value: require('../assets/images/quizimages/pairs/cat.png'), type: 'image', visible: false },
-      { id: 8, data: 'H', value: require('../assets/images/quizimages/pairs/hat.png'), type: 'image', visible: false },
-      { id: 9, data: 'S', value: require('../assets/images/quizimages/pairs/sun.png'), type: 'image', visible: false },
-      { id: 10, data: 'F', value: require('../assets/images/quizimages/pairs/frog.png'), type: 'image', visible: false },
-      { id: 11, data: 'R', value: require('../assets/images/quizimages/pairs/rat.png'), type: 'image', visible: false },
+      { id: 1, data: 'S', value: require('../assets/images/quizimages/pairs/sun.png'), type: 'image', visible: false },
+      { id: 2, data: 'R', value: 'r', type: 'letter', visible: false },
+      { id: 3, data: 'F', value: require('../assets/images/quizimages/pairs/frog.png'), type: 'image', visible: false },
+      { id: 4, data: 'H', value: 'h', type: 'letter', visible: false },
+      { id: 5, data: 'C', value: require('../assets/images/quizimages/pairs/cat.png'), type: 'image', visible: false },
+      { id: 6, data: 'A', value: 'a', type: 'letter', visible: false },
+      { id: 7, data: 'C', value: 'c', type: 'letter', visible: false },
+      { id: 8, data: 'R', value: require('../assets/images/quizimages/pairs/rat.png'), type: 'image', visible: false },
+      { id: 9, data: 'F', value: 'f', type: 'letter', visible: false },
+      { id: 10,  data: 'S', value: 's', type: 'letter', visible: false },
+      { id: 11, data: 'H', value: require('../assets/images/quizimages/pairs/hat.png'), type: 'image', visible: false },
       { id: 12, data: 'A', value: require('../assets/images/quizimages/pairs/ant.png'), type: 'image', visible: false },
     ]);
 
@@ -59,7 +59,7 @@ const MemoryMatchingPairsGame = () => {
 
         setCards(updatedCards);
         setSelectedCards([]);
-      }, 1000);
+      }, 700);
     }
   };
 
@@ -74,7 +74,7 @@ const MemoryMatchingPairsGame = () => {
 
   return (
     <View style={styles.container}>
-
+    <ImageBackground source={require('../assets/images/blob3.png')} resizeMode="contain"   style={styles.bgimage}>
       <View style={styles.cardsContainer}>
         {cards.map((card) => (
           <TouchableOpacity
@@ -108,6 +108,7 @@ const MemoryMatchingPairsGame = () => {
           {/* <Text style={styles.winText}>Congratulations! You won!</Text> */}
         </View>
       )}
+      </ImageBackground>
     </View>
   );
 };
@@ -117,8 +118,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#1f354b",
     alignItems: "center",
-    // justifyContent: "center",
-    paddingTop: 80
+  },
+  bgimage: {
+    flex: 1,
+    justifyContent: 'center',
   },
   header: {
     flexDirection: 'row',
@@ -141,6 +144,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
+    width: 350
   },
   card: {
     width: 80,

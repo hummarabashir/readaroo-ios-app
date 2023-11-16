@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
 const questions = [
     {
       image: require("../assets/images/quizimages/cat.png"),
@@ -62,6 +62,8 @@ const questions = [
   
     return (
       <View style={styles.container}>
+            <ImageBackground source={require('../assets/images/blob3.png')} resizeMode="contain"   style={styles.bgimage}>
+<View style={styles.subContainer}>
               <View style={styles.imageContainer}>
               <Image source={questions[currentQuestion].image} style={styles.image} />
       </View>
@@ -104,6 +106,8 @@ const questions = [
               styles.enabledNextButton,
           ]}>Next</Text>
         </TouchableOpacity>
+        </View>
+        </ImageBackground>
       </View>
     );
   }
@@ -116,6 +120,15 @@ const questions = [
         backgroundColor: "#1f354b",
         alignItems: "center",
         justifyContent: "center",
+    },
+    bgimage: {
+      flex: 1,
+      justifyContent: 'center',
+    },
+    subContainer: {
+      width: 350,
+      justifyContent: 'center',
+      alignItems: 'center'
     },
     imageContainer: {
         // flex: 1,
@@ -169,7 +182,7 @@ const questions = [
         width: 200,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 35,
+        marginTop: 25,
         flexWrap: "wrap"
     },
     optionButton: {
@@ -184,7 +197,7 @@ const questions = [
         justifyContent: "center",
     },
     selectedOptionButton: {
-      backgroundColor: "#6ab04c",
+      backgroundColor: "#6cdfef",
     },
     optionText: {
       fontSize: 22,
@@ -193,18 +206,19 @@ const questions = [
     nextButton: {
       backgroundColor: "#fff",
       borderRadius: 16,
-      paddingVertical: 10,
-      paddingHorizontal: 22,
-      marginTop: 20
-    //   opacity: 0.5,
+      paddingTop: 10,
+      paddingBottom: 10,
+      paddingLeft: 30,
+      paddingRight: 30,
+      marginTop: 32
     },
     enabledNextButton: {
     //   opacity: 1,
       color: "#000"
     },
     nextButtonText: {
-      fontSize: 20,
-      fontWeight: 600,
+      fontWeight: "bold",
+        fontSize: 16,
       color: "rgba(16, 16, 16, 0.3)",
     },
   });

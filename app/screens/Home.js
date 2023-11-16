@@ -39,7 +39,7 @@ const Home = ({navigation}) => (
   <>
   <StatusBar style="light" />
   <View style={styles.container}>
-    <ImageBackground source={require('../assets/images/blob.png')} resizeMode="cover" style={styles.bgimage}>
+    <ImageBackground source={require('../assets/images/blob3.png')} resizeMode="contain"   style={styles.bgimage}>
       {/* <Text style={styles.text}>Inside</Text> */}
       <View style={styles.contain}>
 
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     // flexDirection: 'column',
     // justifyContent: 'center',
     // alignItems: 'center',
+    // padding: 10,
     backgroundColor: '#1f354b',
     fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif'
   },
@@ -128,8 +129,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   row: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    // flexDirection: 'row',
+    // flexWrap: 'wrap',
     marginTop: -30
   },
   logocontainer: {
@@ -145,7 +146,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f7bf31",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 20,
+    marginTop: 10,
   },
   hexagonInner: {
     width: 80,

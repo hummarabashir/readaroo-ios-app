@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground } from "react-native";
 
 const animalData = [
   {
@@ -43,18 +43,41 @@ export default function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
+  const [selectedOpt, setSelectedOpt] = useState(null);
 
   const handleAnswerButtonClick = (selectedOption) => {
+    
     if (selectedOption === animalData[currentQuestion].correctOption) {
-      setScore(score + 1);
-    }
+      setSelectedOpt(selectedOption);
 
-    const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < animalData.length) {
-      setCurrentQuestion(nextQuestion);
-    } else {
-      setShowScore(true);
+      setScore(score + 1);
+   
+
     }
+    // if (currentQuestion === animalData.length - 1) {
+    //   setShowScore(true);
+
+    // }else{
+    // }
+  //   const nextQuestion = currentQuestion + 1;
+
+  //   if (nextQuestion > animalData.length) {
+  //     setShowScore(true);
+
+  //     // setCurrentQuestion(nextQuestion);
+  //   } else {
+  //     // setShowScore(true);
+  //   }
+  };
+
+  const handleNextQuestion = () => {
+    if (currentQuestion === animalData.length - 1) {
+      setShowScore(true);
+    } else {
+      setCurrentQuestion(currentQuestion + 1);
+    }
+    // setCurrentQuestion(currentQuestion + 1);
+    setSelectedOpt(null);
   };
 
   const handleRestartButtonClick = () => {
@@ -65,6 +88,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+          <ImageBackground source={require('../assets/images/blob3.png')} resizeMode="contain"   style={styles.bgimage}>
       {showScore ? (
         <View style={styles.scoreContainer}>
               {score === animalData.length ? (
@@ -91,6 +115,7 @@ export default function App() {
           </TouchableOpacity>
         </View>
       ) : (
+
         <View style={styles.quizContainer}>
           <View style={styles.imageContainer}>
             <Image
@@ -109,8 +134,19 @@ export default function App() {
               </TouchableOpacity>
             ))}
           </View>
+          <TouchableOpacity
+        style={[
+          styles.nextButton,
+          selectedOpt === null && styles.disabledButton,
+        ]}
+        onPress={handleNextQuestion}
+        disabled={selectedOpt === null}
+      >
+        <Text style={[styles.nextButtonText, selectedOpt === null && styles.disabledButton]}>Next</Text>
+      </TouchableOpacity>
         </View>
       )}
+      </ImageBackground>
     </View>
   );
 }
@@ -122,15 +158,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+
+  bgimage: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   quizContainer: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    width: 350
   },
   scoreContainer: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    width: 350
   },
   scoreText: {
     fontSize: 24,
@@ -159,8 +202,6 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   imageContainer: {
-    // flex: 1,
-    marginTop: 40,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 16,
@@ -169,19 +210,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#0671d5"
   },
   image: {
-    // width: 300,
-    // height: 300,
     resizeMode: "contain",
     padding: 1,
     alignItems: "center",
     justifyContent: "center",
     display: "flex",
-    width: "85%"
+    width: "80%"
   },
   optionsContainer: {
-    flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 15
   },
   optionButton: {
     backgroundColor: "#f878b5",
@@ -195,5 +234,24 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  nextButton: {
+    backgroundColor: "#fff",
+    borderRadius: 16,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
+    marginTop: 18,
+    alignItems: "center",
+    justifyContent: "center",
+},
+nextButtonText: {
+    fontWeight: "bold",
+    fontSize: 16
+},
+  disabledButton: {
+    backgroundColor: "#fff",
+    color: "lightgray"
   },
 });

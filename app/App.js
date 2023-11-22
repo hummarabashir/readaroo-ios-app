@@ -4,6 +4,7 @@ import {createRootNavigator} from './router';
 import Home from './screens/Home';
 import Buttons from './screens/Buttons';
 import Phase2 from './screens/Phase2';
+import AlphaPhonics from './screens/AlphaPhonics';
 import Quiz from './screens/Quiz';
 import Games from './screens/Games';
 import MatchingPairs from './screens/MatchingPairs';
@@ -22,6 +23,7 @@ export default function App() {
           <Stack.Screen name="Home" component = {Home} options={{ headerShown: false }} /> 
           <Stack.Screen name="Buttons" component = {Buttons} /> 
           <Stack.Screen name="Phase2" component = {Phase2} />
+          <Stack.Screen name="AlphaPhonics" component = {AlphaPhonics} />
           <Stack.Screen name="Quiz" component = {Quiz} />
           <Stack.Screen name="Games" component = {Games} />
           <Stack.Screen name="MatchingPairs" component={MatchingPairs} options={{ headerTitle: "Matching Pairs" }} />

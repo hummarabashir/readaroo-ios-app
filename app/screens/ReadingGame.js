@@ -1,250 +1,225 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
 
 const questions = [
-    {
-      id: 1,
-      name: "octopus",
-      image: require("../assets/images/quizimages/octopus.png"),
-      options: ["require('../assets/images/quizimages/octopus.png')", "require('../assets/images/quizimages/bus.png')", "require('../assets/images/quizimages/cat.png')"],
-      correctOption: "o",
-    },
-    // {
-    //   id: 2,
-    //   name: "Igloo",
-    //   image: require("../assets/images/quizimages/igloo.png"),
-    //   options: ["p", "m", "i"],
-    //   correctOption: "i",
-    // },
-    // {
-    //   id: 3,
-    //   name: "King",
-    //   image: require("../assets/images/quizimages/king.png"),
-    //   options: ["k", "h", "q"],
-    //   correctOption: "k",
-    // },
-    // {
-    //   id: 4,
-    //   name: "Umbrella",
-    //   image: require("../assets/images/quizimages/umbrella.png"),
-    //   options: ["a", "u", "b"],
-    //   correctOption: "u",
-    // },
-    // {
-    //     id: 5,
-    //     name: "Socks",
-    //     image: require("../assets/images/quizimages/socks.png"),
-    //     options: ["s", "k", "o"],
-    //     correctOption: "s",
-    //   },
-  ];
+  {
+    word: "book",
+    options: [
+      { id: 1, image: require("../assets/images/quizimages/pairs/jam.png") },
+      { id: 2, image: require("../assets/images/quizimages/pairs/book.png") },
+      { id: 3, image: require("../assets/images/quizimages/pairs/watch.png") },
+    ],
+    correctOption: 2,
+  },
+  {
+    word: "cow",
+    options: [
+      { id: 1, image: require("../assets/images/quizimages/pairs/moon.png") },
+      { id: 2, image: require("../assets/images/quizimages/pairs/shoe.png") },
+      { id: 3, image: require("../assets/images/quizimages/pairs/cow.png") },
+    ],
+    correctOption: 3,
+  },
+  {
+    word: "bike",
+    options: [
+      { id: 1, image: require("../assets/images/quizimages/pairs/bike.png") },
+      { id: 2, image: require("../assets/images/quizimages/pairs/cloud.png") },
+      { id: 3, image: require("../assets/images/quizimages/pairs/bone.png") },
+    ],
+    correctOption: 1,
+  },
+  {
+    word: "crayon",
+    options: [
+      { id: 1, image: require("../assets/images/quizimages/pairs/phone.png") },
+      { id: 2, image: require("../assets/images/quizimages/pairs/crayon.png") },
+      { id: 3, image: require("../assets/images/quizimages/pairs/cake.png") },
+    ],
+    correctOption: 2,
+  },
+];
 
-const QuizScreen = ({ image, options, onSelect }) => {
+const App = () => {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
 
-  return (
-    <View>
-      <View style={styles.imageContainer}>
-      <Image
-              style={styles.image}
-              source={image}
-            />
-      </View>
-      <View style={styles.optionsContainer}>
 
-      {options.map((option) => (
-        <TouchableOpacity
-          key={option}
-          onPress={() => {
-            setSelectedOption(option);
-            onSelect(option);
-          }}
-          style={{
-            backgroundColor: selectedOption === option ? "#6cdfef" : "#f878b5",
-        padding: 6,
-        borderRadius: 16,
-        flexDirection: "column",
-        width: "28%",
-        aspectRatio:1/1,
-        alignItems: "center",
-        justifyContent: "center"
-          }}
-        >
-          {/* <Text style={styles.optionButtonText}>{option}</Text> */}
-          <Image
-              style={styles.image}
-              source={option}
-            />
-        </TouchableOpacity>
-      ))}
-      </View>
-    </View>
-  );
-};
+  const handleOptionPress = (optionId) => {
 
-const QuizApp = () => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [showScore, setShowScore] = useState(false);
+    if (optionId === questions[currentQuestion].correctOption) {
+      setSelectedOption(optionId);
 
-  const handleSelect = (option) => {
-    const newSelectedOptions = [...selectedOptions];
-    newSelectedOptions[currentQuestionIndex] = option;
-    setSelectedOptions(newSelectedOptions);
-  };
-  const handleRestartButtonClick = () => {
-    setCurrentQuestionIndex(0);
-    // setScore(0);
-    setShowScore(false);
-  };
-
-  const handleNext = () => {
-    if (currentQuestionIndex === questions.length - 1) {
-      setShowScore(true);
-    } else {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setScore(score + 1);
+      if (currentQuestion === questions.length - 1) {
+        // All questions answered correctly
+        // Show score and play again option
+        // setCurrentQuestion(0);
+      } else {
+        // setCurrentQuestion(currentQuestion + 1);
+      }
     }
   };
 
-  const score = selectedOptions.filter(
-    (option, index) => option === questions[index].correctOption
-  ).length;
+  const handleNextQuestion = () => {
+    setCurrentQuestion(currentQuestion + 1);
+    setSelectedOption(null);
+  };
+
+  const handlePlayAgain = () => {
+    setScore(0);
+    setCurrentQuestion(0);
+  };
 
   return (
     <View style={styles.container}>
-      {showScore ? (
-        <View style={styles.scoreContainer}>
-          <Text style={styles.scoreText}>
-            Your Score: {score}/{questions.length}
-          </Text>
-          {score === questions.length ? (
-            <Text style={{ fontSize: 48 }}>😎</Text>
-          ) : score >= questions.length / 2 ? (
-            <Text style={{ fontSize: 48 }}>🙂</Text>
-          ) : (
-            <Text style={{ fontSize: 48 }}>😞</Text>
-          )}
+          <ImageBackground source={require('../assets/images/blob3.png')} resizeMode="contain"   style={styles.bgimage}>
+      {currentQuestion < questions.length ? (
+        <View style={styles.center}>
+          <View style= {styles.wordContainer}>
+          <Text style={styles.word}>{questions[currentQuestion].word}</Text>
+          </View>
+          <View style={styles.optionsContainer}>
+            {questions[currentQuestion].options.map((option) => (
               <TouchableOpacity
-              style={styles.restartButton}
-              onPress={handleRestartButtonClick}
-            >
-              <Text style={styles.restartButtonText}>Play again</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.backButton}
-              onPress={handleRestartButtonClick}
-            >
-              <Text style={styles.restartButtonText}>Back to Games</Text>
-            </TouchableOpacity>
+                key={option.id}
+                style={styles.option}
+                onPress={() => handleOptionPress(option.id)}
+              >
+                <Image source={option.image} style={styles.image} />
+              </TouchableOpacity>
+            ))}
+          </View>
+          <TouchableOpacity
+        style={[
+          styles.nextButton,
+          selectedOption === null && styles.disabledButton,
+        ]}
+        onPress={handleNextQuestion}
+        disabled={selectedOption === null}
+      >
+        <Text style={[styles.nextButtonText, selectedOption === null && styles.disabledButton]}>Next</Text>
+      </TouchableOpacity>
         </View>
-          
       ) : (
-        <QuizScreen
-          image={questions[currentQuestionIndex].image}
-          options={questions[currentQuestionIndex].options}
-          onSelect={handleSelect}
-        />
+        <View style={styles.center}>
+          <Text style={styles.score}>Your Score: {score}</Text>
+          <Text style={styles.score}>Well done!</Text>
+<Text style={styles.score}>
+🎉</Text>
+
+          <TouchableOpacity
+            style={styles.playAgainButton}
+            onPress={handlePlayAgain}
+          >
+            <Text style={styles.playAgainButtonText}>Play Again</Text>
+          </TouchableOpacity>
+        </View>
       )}
-      {!showScore && (
-        <TouchableOpacity
-          onPress={handleNext}
-          style={styles.nextButton}>
-          <Text style={styles.nextButtonText}>
-            Next
-          </Text>
-        </TouchableOpacity>
-      )}
+      </ImageBackground>
     </View>
   );
 };
+
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      flexDirection: "column",
-    //   flexWrap: "wrap",
-      backgroundColor: "#1f354b",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    imageContainer: {
-        // flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 16,
-        height: 200,
-        width: 200,
-        backgroundColor: "#0671d5"
-      },
-      image: {
-        // width: 300,
-        // height: 300,
-        resizeMode: "contain",
-        padding: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        display: "flex",
-        width: "85%"
-      },
-    scoreContainer: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-      },
-      scoreText: {
-        fontSize: 24,
-        color: "#fff",
-        fontWeight: "bold",
-        marginBottom: 16,
-      },
-      optionsContainer: {
-        // flex: 1,
-        display: "flex",
-        gap: 10,
-        flexDirection: "row",
-        width: 200,
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 30
-      },
-      optionButtonText: {
-        color: "#000",
-        fontSize: 22,
-        fontWeight: "bold",
-        textAlign: "center",
-      },
-    nextButton: {
-        backgroundColor: "#fff",
-        borderRadius: 16,
-        paddingTop: 10,
-        paddingBottom: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        marginTop: 40
-    },
-    nextButtonText: {
-        fontWeight: "bold",
-        fontSize: 16
-    },
-    restartButton: {
-        backgroundColor: "#f878b5",
-        padding: 12,
-        borderRadius: 8,
-        width: 160,
-        marginTop: 18
-      },
-      backButton: {
-        backgroundColor: "#6cdfef",
-        padding: 12,
-        borderRadius: 8,
-        width: 160,
-        marginTop: 18
-      },
-      restartButtonText: {
-        color: "#000",
-        fontSize: 16,
-        fontWeight: "bold",
-        textAlign: "center"
-      },
+  container: {
+    flex: 1,
+    flexDirection: "column",
+  //   flexWrap: "wrap",
+    backgroundColor: "#1f354b",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  bgimage: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  center: {
+    alignItems: "center",
+    justifyContent: "center",
+    width:350
+  },
+  wordContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 16,
+    backgroundColor: "#0671d5",
+    width: 200,
+    padding: 30
+  },
+  word: {
+    fontSize: 38,
+    fontWeight: "bold",
+    color: "#fff"
+  },
+  optionsContainer: {
+    display: "flex",
+    gap: 10,
+    flexDirection: "row",
+    width: 200,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 40
+  },
+  option: {
+    borderWidth: 1,
+    borderColor: "black",
+    padding: 10,
+    borderRadius: 10,
+    width: 60,
+    height: 60,
+    backgroundColor: "#6cdfef"
+  },
+  image: {
+    width: 40,
+    height: 40,
+    // width: "100%"
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  nextButton: {
+    backgroundColor: "#fff",
+    borderRadius: 16,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
+    marginTop: 55,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 100,
+    textAlign: "center"
+},
+nextButtonText: {
+    fontWeight: "bold",
+    fontSize: 16
+},
+  disabledButton: {
+    backgroundColor: "#fff",
+    color: "lightgray"
+  },
+  score: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+    color: "#fff",
+    textAlign: "center"
+  },
+  playAgainButton: {
+    backgroundColor: "#f878b5",
+    padding: 12,
+    borderRadius: 8,
+    width: 160,
+    marginTop: 18
+  },
+  playAgainButtonText: {
+    color: "#000",
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center"
+  },
 });
 
-export default QuizApp;
+export default App;

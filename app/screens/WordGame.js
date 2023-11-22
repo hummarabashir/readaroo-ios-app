@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet, ImageBackground } from "react-native";
 
 const questions = [
     {
@@ -43,7 +43,7 @@ const QuizScreen = ({ image, options, onSelect }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   return (
-    <View>
+    <View style={styles.subContainer}>
       <View style={styles.imageContainer}>
       <Image
               style={styles.image}
@@ -82,11 +82,15 @@ const QuizApp = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [showScore, setShowScore] = useState(false);
+  const [selectedOpt, setSelectedOpt] = useState(null);
+
 
   const handleSelect = (option) => {
     const newSelectedOptions = [...selectedOptions];
     newSelectedOptions[currentQuestionIndex] = option;
     setSelectedOptions(newSelectedOptions);
+    setSelectedOpt(newSelectedOptions);
+
   };
   const handleRestartButtonClick = () => {
     setCurrentQuestionIndex(0);
@@ -94,12 +98,13 @@ const QuizApp = () => {
     setShowScore(false);
   };
 
-  const handleNext = () => {
+  const handleNextQuestion = () => {
     if (currentQuestionIndex === questions.length - 1) {
       setShowScore(true);
     } else {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
+    setSelectedOpt(null);
   };
 
   const score = selectedOptions.filter(
@@ -108,6 +113,8 @@ const QuizApp = () => {
 
   return (
     <View style={styles.container}>
+          <ImageBackground source={require('../assets/images/blob3.png')} resizeMode="contain"   style={styles.bgimage}>
+
       {showScore ? (
         <View style={styles.scoreContainer}>
           <Text style={styles.scoreText}>
@@ -141,15 +148,21 @@ const QuizApp = () => {
           onSelect={handleSelect}
         />
       )}
+      <View style={styles.subContainer}>
       {!showScore && (
-        <TouchableOpacity
-          onPress={handleNext}
-          style={styles.nextButton}>
-          <Text style={styles.nextButtonText}>
-            Next
-          </Text>
-        </TouchableOpacity>
+                 <TouchableOpacity
+                 style={[
+                   styles.nextButton,
+                   selectedOpt === null && styles.disabledButton,
+                 ]}
+                 onPress={handleNextQuestion}
+                 disabled={selectedOpt === null}
+               >
+                 <Text style={[styles.nextButtonText, selectedOpt === null && styles.disabledButton]}>Next</Text>
+               </TouchableOpacity>
       )}
+      </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -161,6 +174,15 @@ const styles = StyleSheet.create({
       backgroundColor: "#1f354b",
       alignItems: "center",
       justifyContent: "center",
+    },
+    subContainer: {
+      width: 350, 
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    bgimage: {
+      flex: 1,
+      justifyContent: 'center',
     },
     imageContainer: {
         // flex: 1,
@@ -220,6 +242,10 @@ const styles = StyleSheet.create({
     nextButtonText: {
         fontWeight: "bold",
         fontSize: 16
+    },
+    disabledButton: {
+      backgroundColor: "#fff",
+      color: "lightgray"
     },
     restartButton: {
         backgroundColor: "#f878b5",

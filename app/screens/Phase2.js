@@ -1,64 +1,64 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
 import { Audio } from "expo-av";
 
 const alphabetSounds = {
-  a: require("../assets/audio/A.m4a"),
-  b: require("../assets/audio/B.m4a"),
-  c: require("../assets/audio/C.m4a"),
-  d: require("../assets/audio/A.m4a"),
-  e: require("../assets/audio/B.m4a"),
-  f: require("../assets/audio/C.m4a"),
-  g: require("../assets/audio/A.m4a"),
-  h: require("../assets/audio/B.m4a"),
-  i: require("../assets/audio/C.m4a"),
-  j: require("../assets/audio/A.m4a"),
-  k: require("../assets/audio/B.m4a"),
-  l: require("../assets/audio/C.m4a"),
-  m: require("../assets/audio/A.m4a"),
-  n: require("../assets/audio/B.m4a"),
-  o: require("../assets/audio/C.m4a"),
-  p: require("../assets/audio/A.m4a"),
-  q: require("../assets/audio/B.m4a"),
-  r: require("../assets/audio/C.m4a"),
   s: require("../assets/audio/A.m4a"),
-  t: require("../assets/audio/B.m4a"),
+  a: require("../assets/audio/B.m4a"),
+  t: require("../assets/audio/C.m4a"),
+  p: require("../assets/audio/A.m4a"),
+  i: require("../assets/audio/B.m4a"),
+  n: require("../assets/audio/C.m4a"),
+  m: require("../assets/audio/A.m4a"),
+  d: require("../assets/audio/B.m4a"),
+  g: require("../assets/audio/C.m4a"),
+  o: require("../assets/audio/A.m4a"),
+  c: require("../assets/audio/B.m4a"),
+  k: require("../assets/audio/C.m4a"),
+  ck: require("../assets/audio/A.m4a"),
+  e: require("../assets/audio/B.m4a"),
   u: require("../assets/audio/C.m4a"),
-  v: require("../assets/audio/A.m4a"),
-  w: require("../assets/audio/B.m4a"),
-  x: require("../assets/audio/C.m4a"),
-  y: require("../assets/audio/A.m4a"),
-  z: require("../assets/audio/B.m4a"),
+  r: require("../assets/audio/A.m4a"),
+  h: require("../assets/audio/B.m4a"),
+  b: require("../assets/audio/C.m4a"),
+  f: require("../assets/audio/A.m4a"),
+  ff: require("../assets/audio/B.m4a"),
+  l: require("../assets/audio/C.m4a"),
+  ll: require("../assets/audio/A.m4a"),
+  ss: require("../assets/audio/B.m4a"),
+  z: require("../assets/audio/C.m4a"),
+  ee: require("../assets/audio/A.m4a"),
+  ow: require("../assets/audio/B.m4a"),
   // Add more letters and their corresponding sound files here
 };
 
 const alphabetColors = {
-  a: "#f878b5", // pink
-  b: "#0671d5", // blue
-  c: "#11c684", // green
-  d: "#6cdfef",
-  e: "#f7bf31",
-  f: "#6b74e0", //purple
-  g: "#f7bf31", //yellow
-  h: "#0671d5",
-  i: "#f878b5",
-  j: "#6cdfef", //lightblue
-  k: "#11c684",
-  l: "#f878b5",
-  m: "#6b74e0",
-  n: "#0671d5",
-  o: "#6cdfef",
-  p: "#f7bf31",
-  q: "#f878b5",
-  r: "#11c684",
-  s: "#0671d5",
-  t: "#6b74e0",
+  s: "#f878b5", // pink
+  a: "#0671d5", // blue
+  t: "#11c684", // green
+  p: "#6cdfef",
+  i: "#f7bf31",
+  n: "#6b74e0", //purple
+  m: "#f7bf31", //yellow
+  d: "#0671d5",
+  g: "#f878b5",
+  o: "#6cdfef", //lightblue
+  c: "#11c684",
+  k: "#f878b5",
+  ck: "#6b74e0",
+  e: "#0671d5",
   u: "#6cdfef",
-  v: "#f7bf31",
-  w: "#f878b5",
-  x: "#11c684",
-  y: "#0671d5",
-  z: "#6b74e0",
+  r: "#f7bf31",
+  h: "#f878b5",
+  b: "#11c684",
+  f: "#0671d5",
+  ff: "#6b74e0",
+  l: "#6cdfef",
+  ll: "#f7bf31",
+  ss: "#f878b5",
+  z: "#11c684",
+  ee: "#0671d5",
+  ow: "#6b74e0",
 
 
   // Add more letters and their corresponding colors here
@@ -92,7 +92,10 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+          <ImageBackground source={require('../assets/images/blob3.png')} resizeMode="contain" style={styles.bgimage}>
+
       {/* <Text style={styles.title}>Kids Alphabet Listening</Text> */}
+      <View style={styles.subContainer}>
       <View style={styles.grid}>
         {Object.keys(alphabetSounds).map((letter) => (
           <TouchableOpacity
@@ -105,6 +108,8 @@ export default function App() {
           </TouchableOpacity>
         ))}
       </View>
+      </View>
+      </ImageBackground>
     </View>
   );
 }
@@ -115,6 +120,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#1f354b",
+  },
+  bgimage: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  subContainer: {
+    width: 350,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: 24,

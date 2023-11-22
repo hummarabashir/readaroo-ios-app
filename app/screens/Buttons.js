@@ -45,12 +45,14 @@ export default function Buttons({navigation}) {
      <ScrollView style={styles.scrollView}>
 
     <View style={styles.container}>
-    <Image
-                  source={require('../assets/images/bee-logo.png')}
-                  style={styles.image}
-                />
+    <ImageBackground source={require('../assets/images/blob3.png')} resizeMode="contain" style={styles.bgimage}>
+<View style={styles.imageContainer}>
+    <Image source={require('../assets/images/bee-logo.png')}
+                  style={styles.image} />
+                </View>
                 {/* <Pressable style={styles.box}   title="Press me"
         onPress={() => Alert.alert('Phase 2')}> */}
+        <View style={styles.pressbox}>
           <Pressable style={styles.box} onPress={() => navigation.navigate('Phase2')}>
                   <View style={{width: "60%"}}>
                   <Text style={styles.heading}>Phase 2</Text>
@@ -61,7 +63,7 @@ export default function Buttons({navigation}) {
                   {/* <SvgXml xml={xml} style={styles.svg}/> */}
                   </View>
                 </Pressable>
-                <Pressable style={styles.box2} onPress={() => navigation.navigate('')}>
+                <Pressable style={styles.box2} onPress={() => navigation.navigate('AlphaPhonics')}>
                   <View style={{width: "60%"}}>
                   <Text style={styles.heading}>Phase 3</Text>
                   <Text style={styles.phrasetext}>25 Letters</Text>
@@ -93,7 +95,8 @@ export default function Buttons({navigation}) {
                   source={require('../assets/images/flower.png')}/>
                   </View>
                 </Pressable>
-
+                </View>
+</ImageBackground>
     </View>
     </ScrollView>
     </SafeAreaView>
@@ -102,18 +105,27 @@ export default function Buttons({navigation}) {
 };
   var styles = StyleSheet.create({
     container: {
-      flex: 1,
-      flexDirection: 'column',
+      // flex: 1,
+      // flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
+      width: '100%',
       height: '100%',
       backgroundColor: '#1f354b',
       fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif'
     },
+    bgimage: {
+      flex: 1,
+      justifyContent: 'center',
+    },
+    imageContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
     image: {
     width: 60,
     height: 60,  
-    marginTop: 12,
+    marginTop: 16,
   },
 heading: {
   fontWeight: "bold",
@@ -125,15 +137,21 @@ phrasetext: {
   color: '#ffffff',
   fontSize: 13,
 },
+pressbox: {
+  width: 350,
+  justifyContent: 'center',
+      alignItems: 'center',
+},
 box: {
   backgroundColor: '#6b74e0',
   width: 180,
   borderRadius: 16,
   padding: 20,
   color: '#ffffff',
-  marginTop: 22,
+  marginTop: 26,
   flexDirection: 'row',
   flexWrap: 'wrap',
+  
 },
 box2: {
   backgroundColor: '#11c684',
@@ -141,7 +159,7 @@ box2: {
   borderRadius: 16,
   padding: 20,
   color: '#ffffff',
-  marginTop: 30,
+  marginTop: 20,
   flexDirection: 'row',
   flexWrap: 'wrap',
 },
@@ -151,7 +169,7 @@ box3: {
   borderRadius: 16,
   padding: 20,
   color: '#ffffff',
-  marginTop: 30,
+  marginTop: 20,
   flexDirection: 'row',
   flexWrap: 'wrap',
 },
@@ -161,7 +179,7 @@ box4: {
   borderRadius: 16,
   padding: 20,
   color: '#ffffff',
-  marginTop: 30,
+  marginTop: 20,
   flexDirection: 'row',
   flexWrap: 'wrap',
 },

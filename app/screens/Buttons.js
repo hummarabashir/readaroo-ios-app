@@ -74,7 +74,7 @@ export default function Buttons({navigation}) {
                   </View>
                 </Pressable>
 
-                <Pressable style={styles.box3} onPress={() => navigation.navigate('')}>
+                <Pressable style={styles.box3} onPress={() => navigation.navigate('Playcard')}>
                   <View style={{width: "60%"}}>
                   <Text style={styles.heading}>Phase 5</Text>
                   <Text style={styles.phrasetext}>22 Letters</Text>

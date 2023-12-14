@@ -44,16 +44,21 @@ export default function App() {
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [selectedOpt, setSelectedOpt] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [showResult, setShowResult] = useState(false);
+
 
   const handleAnswerButtonClick = (selectedOption) => {
-    
+    setSelectedAnswer(selectedOption);
+
     if (selectedOption === animalData[currentQuestion].correctOption) {
       setSelectedOpt(selectedOption);
 
       setScore(score + 1);
-   
 
     }
+    setShowResult(true);
+
     // if (currentQuestion === animalData.length - 1) {
     //   setShowScore(true);
 
@@ -73,8 +78,11 @@ export default function App() {
   const handleNextQuestion = () => {
     if (currentQuestion === animalData.length - 1) {
       setShowScore(true);
-    } else {
+    } else if (selectedAnswer === animalData[currentQuestion].correctOption) {
+      
       setCurrentQuestion(currentQuestion + 1);
+      setSelectedAnswer(null);
+      setShowResult(false);
     }
     // setCurrentQuestion(currentQuestion + 1);
     setSelectedOpt(null);
@@ -84,6 +92,9 @@ export default function App() {
     setCurrentQuestion(0);
     setScore(0);
     setShowScore(false);
+    setSelectedAnswer(null);
+    setSelectedOpt(null);
+    setShowResult(false);
   };
 
   return (
@@ -91,7 +102,7 @@ export default function App() {
           <ImageBackground source={require('../assets/images/blob3.png')} resizeMode="contain"   style={styles.bgimage}>
       {showScore ? (
         <View style={styles.scoreContainer}>
-              {score === animalData.length ? (
+              {/* {score === animalData.length ? (
             <Text style={{ fontSize: 48 }}>😎</Text>
           ) : score >= animalData.length / 2 ? (
             <Text style={{ fontSize: 48 }}>🙂</Text>
@@ -100,7 +111,9 @@ export default function App() {
           )}
           <Text style={styles.scoreText}>
             You scored {score} out of {animalData.length}!
-          </Text>
+          </Text> */}
+          <Text style={{ fontSize: 60 }}>🎉</Text>
+          <Text style={styles.scoreText}>Well Done!</Text>
           <TouchableOpacity
             style={styles.restartButton}
             onPress={handleRestartButtonClick}
@@ -127,22 +140,52 @@ export default function App() {
             {animalData[currentQuestion].options.map((option) => (
               <TouchableOpacity
                 key={option}
-                style={styles.optionButton}
+                style={[
+                  styles.optionButton,
+                  selectedAnswer === option && styles.selectedOptionButton,
+                ]}
                 onPress={() => handleAnswerButtonClick(option)}
+
               >
                 <Text style={styles.optionButtonText}>{option}</Text>
               </TouchableOpacity>
             ))}
           </View>
-          <TouchableOpacity
+          {/* {showResult ? (
+        <View>
+          <Text style={styles.handleAnswer}>{selectedAnswer === animalData[currentQuestion].correctOption ? 'Correct ✅' : 'Try again ❌'}</Text>
+          </View>
+          ) : ('')} */}
+          <View style={styles.answerBlock}>
+           {showResult && (
+        <Text style={styles.handleAnswer}>
+          {selectedAnswer === animalData[currentQuestion].correctOption
+            ? 'Correct ✅'
+            : 'Try again ❌'}
+        </Text>
+      )}
+      </View>
+          {/* <TouchableOpacity
         style={[
           styles.nextButton,
-          selectedOpt === null && styles.disabledButton,
+          selectedAnswer === animalData[currentQuestion].correctOption && styles.disabledButton,
         ]}
         onPress={handleNextQuestion}
         disabled={selectedOpt === null}
       >
         <Text style={[styles.nextButtonText, selectedOpt === null && styles.disabledButton]}>Next</Text>
+      </TouchableOpacity> */}
+          <TouchableOpacity
+        style={[
+          styles.nextButton,
+          selectedAnswer === animalData[currentQuestion].correctOption
+            ? styles.nextButtonEnabled
+            : styles.disabledButton,
+        ]}
+        onPress={handleNextQuestion}
+        disabled={!selectedAnswer}
+      >
+        <Text style={[styles.nextButtonText, selectedAnswer !== animalData[currentQuestion].correctOption && styles.disabledButton]}>Next</Text>
       </TouchableOpacity>
         </View>
       )}
@@ -176,17 +219,18 @@ const styles = StyleSheet.create({
     width: 350
   },
   scoreText: {
-    fontSize: 24,
+    fontSize: 28,
     color: "#fff",
     fontWeight: "bold",
     marginBottom: 16,
+    marginTop: 12
   },
   restartButton: {
     backgroundColor: "#f878b5",
     padding: 12,
     borderRadius: 8,
     width: 160,
-    marginTop: 18
+    marginTop: 28
   },
   backButton: {
     backgroundColor: "#6cdfef",
@@ -235,6 +279,17 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
+  selectedOptionButton: {
+    backgroundColor: '#6cdfef',
+  },
+  answerBlock: {
+height: 38
+  },
+  handleAnswer : {
+    color: "#ffffff",
+    padding: 4,
+    fontSize: 14
+  },
   nextButton: {
     backgroundColor: "#fff",
     borderRadius: 16,
@@ -242,7 +297,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 30,
     paddingRight: 30,
-    marginTop: 18,
+    // marginTop: 40,
     alignItems: "center",
     justifyContent: "center",
 },

@@ -74,6 +74,7 @@ const QuizScreen = ({ image, options, onSelect }) => {
         </TouchableOpacity>
       ))}
       </View>
+      
     </View>
   );
 };
@@ -83,27 +84,41 @@ const QuizApp = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [showScore, setShowScore] = useState(false);
   const [selectedOpt, setSelectedOpt] = useState(null);
-
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [showResult, setShowResult] = useState(false);
 
   const handleSelect = (option) => {
+    setSelectedAnswer(option);
     const newSelectedOptions = [...selectedOptions];
     newSelectedOptions[currentQuestionIndex] = option;
     setSelectedOptions(newSelectedOptions);
     setSelectedOpt(newSelectedOptions);
-
+    setShowResult(true);
   };
   const handleRestartButtonClick = () => {
     setCurrentQuestionIndex(0);
     // setScore(0);
     setShowScore(false);
+    setSelectedAnswer(null);
+    setSelectedOpt(null);
+    setShowResult(false);
   };
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex === questions.length - 1) {
       setShowScore(true);
-    } else {
+    } 
+    // else {
+    //   setCurrentQuestionIndex(currentQuestionIndex + 1);
+    // }
+    // setSelectedOpt(null);
+    else if (selectedAnswer === questions[currentQuestionIndex].correctOption) {
+      
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setSelectedAnswer(null);
+      setShowResult(false);
     }
+    // setCurrentQuestion(currentQuestion + 1);
     setSelectedOpt(null);
   };
 
@@ -117,7 +132,7 @@ const QuizApp = () => {
 
       {showScore ? (
         <View style={styles.scoreContainer}>
-          <Text style={styles.scoreText}>
+          {/* <Text style={styles.scoreText}>
             Your Score: {score}/{questions.length}
           </Text>
           {score === questions.length ? (
@@ -126,7 +141,9 @@ const QuizApp = () => {
             <Text style={{ fontSize: 48 }}>🙂</Text>
           ) : (
             <Text style={{ fontSize: 48 }}>😞</Text>
-          )}
+          )} */}
+            <Text style={{ fontSize: 60 }}>🎉</Text>
+          <Text style={styles.scoreText}>Well Done!</Text>
               <TouchableOpacity
               style={styles.restartButton}
               onPress={handleRestartButtonClick}
@@ -148,18 +165,41 @@ const QuizApp = () => {
           onSelect={handleSelect}
         />
       )}
+      
       <View style={styles.subContainer}>
+      <View style={styles.answerBlock}>
+              {!showScore && showResult && (
+           <Text style={styles.handleAnswer}>
+             {selectedAnswer === questions[currentQuestionIndex].correctOption
+               ? 'Correct ✅'
+               : 'Try again ❌'}
+           </Text>
+         )}
+         </View>
       {!showScore && (
-                 <TouchableOpacity
-                 style={[
-                   styles.nextButton,
-                   selectedOpt === null && styles.disabledButton,
-                 ]}
-                 onPress={handleNextQuestion}
-                 disabled={selectedOpt === null}
-               >
-                 <Text style={[styles.nextButtonText, selectedOpt === null && styles.disabledButton]}>Next</Text>
-               </TouchableOpacity>
+              //    <TouchableOpacity
+              //    style={[
+              //      styles.nextButton,
+              //      selectedOpt === null && styles.disabledButton,
+              //    ]}
+              //    onPress={handleNextQuestion}
+              //    disabled={selectedOpt === null}
+              //  >
+              //    <Text style={[styles.nextButtonText, selectedOpt === null && styles.disabledButton]}>Next</Text>
+              //  </TouchableOpacity>
+         
+              <TouchableOpacity
+              style={[
+                styles.nextButton,
+                selectedAnswer === questions[currentQuestionIndex].correctOption
+                  ? styles.nextButtonEnabled
+                  : styles.disabledButton,
+              ]}
+              onPress={handleNextQuestion}
+              disabled={!selectedAnswer}
+            >
+              <Text style={[styles.nextButtonText, selectedAnswer !== questions[currentQuestionIndex].correctOption && styles.disabledButton]}>Next</Text>
+            </TouchableOpacity>
       )}
       </View>
       </ImageBackground>
@@ -213,6 +253,8 @@ const styles = StyleSheet.create({
         color: "#fff",
         fontWeight: "bold",
         marginBottom: 16,
+        marginTop: 12
+
       },
       optionsContainer: {
         // flex: 1,
@@ -230,6 +272,14 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textAlign: "center",
       },
+      answerBlock: {
+        height: 55
+          },
+          handleAnswer : {
+            color: "#ffffff",
+            padding: 16,
+            fontSize: 14
+          },
     nextButton: {
         backgroundColor: "#fff",
         borderRadius: 16,
@@ -237,7 +287,6 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         paddingLeft: 30,
         paddingRight: 30,
-        marginTop: 40
     },
     nextButtonText: {
         fontWeight: "bold",

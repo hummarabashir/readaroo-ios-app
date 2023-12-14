@@ -44,9 +44,12 @@ const App = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [showResult, setShowResult] = useState(false);
 
 
   const handleOptionPress = (optionId) => {
+    setSelectedAnswer(optionId);
 
     if (optionId === questions[currentQuestion].correctOption) {
       setSelectedOption(optionId);
@@ -60,16 +63,30 @@ const App = () => {
         // setCurrentQuestion(currentQuestion + 1);
       }
     }
+    setShowResult(true);
+
   };
 
   const handleNextQuestion = () => {
-    setCurrentQuestion(currentQuestion + 1);
+    // setCurrentQuestion(currentQuestion + 1);
+    // setSelectedOption(null);
+    if (selectedAnswer === questions[currentQuestion].correctOption) {
+      
+      setCurrentQuestion(currentQuestion + 1);
+      setSelectedAnswer(null);
+      setShowResult(false);
+    }
+    // setCurrentQuestion(currentQuestion + 1);
     setSelectedOption(null);
   };
 
   const handlePlayAgain = () => {
-    setScore(0);
     setCurrentQuestion(0);
+    setScore(0);
+    // setShowScore(false);
+    setSelectedAnswer(null);
+    setSelectedOption(null);
+    setShowResult(false);
   };
 
   return (
@@ -84,14 +101,20 @@ const App = () => {
             {questions[currentQuestion].options.map((option) => (
               <TouchableOpacity
                 key={option.id}
-                style={styles.option}
-                onPress={() => handleOptionPress(option.id)}
+               
+                onPress={() => {
+                  setSelectedAnswer(option);
+                  handleOptionPress(option.id)}}
+                style={[
+                  styles.option,
+                  selectedAnswer === option.id && styles.selectedOptionButton,
+                ]}
               >
                 <Image source={option.image} style={styles.image} />
               </TouchableOpacity>
             ))}
           </View>
-          <TouchableOpacity
+          {/* <TouchableOpacity
         style={[
           styles.nextButton,
           selectedOption === null && styles.disabledButton,
@@ -100,20 +123,45 @@ const App = () => {
         disabled={selectedOption === null}
       >
         <Text style={[styles.nextButtonText, selectedOption === null && styles.disabledButton]}>Next</Text>
+      </TouchableOpacity> */}
+          <View style={styles.answerBlock}>
+           {showResult && (
+        <Text style={styles.handleAnswer}>
+          {selectedAnswer === questions[currentQuestion].correctOption
+            ? 'Correct ✅'
+            : 'Try again ❌'}
+        </Text>
+      )}
+      </View>
+          <TouchableOpacity
+        style={[
+          styles.nextButton,
+          selectedAnswer === questions[currentQuestion].correctOption
+            ? styles.nextButtonEnabled
+            : styles.disabledButton,
+        ]}
+        onPress={handleNextQuestion}
+        disabled={!selectedAnswer}
+      >
+        <Text style={[styles.nextButtonText, selectedAnswer !== questions[currentQuestion].correctOption && styles.disabledButton]}>Next</Text>
       </TouchableOpacity>
         </View>
       ) : (
-        <View style={styles.center}>
-          <Text style={styles.score}>Your Score: {score}</Text>
-          <Text style={styles.score}>Well done!</Text>
-<Text style={styles.score}>
-🎉</Text>
+        <View style={styles.scoreContainer}>
+        <Text style={{ fontSize: 60 }}>🎉</Text>
+          <Text style={styles.scoreText}>Well Done!</Text>
 
           <TouchableOpacity
             style={styles.playAgainButton}
             onPress={handlePlayAgain}
           >
             <Text style={styles.playAgainButtonText}>Play Again</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.playAgainButton}
+            onPress={handlePlayAgain}
+          >
+            <Text style={styles.playAgainButtonText}>Back to Games</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -139,6 +187,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width:350
+  },
+  scoreContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 350
+  },
+  scoreText: {
+    fontSize: 28,
+    color: "#fff",
+    fontWeight: "bold",
+    marginBottom: 16,
+    marginTop: 12
   },
   wordContainer: {
     alignItems: "center",
@@ -171,6 +232,9 @@ const styles = StyleSheet.create({
     height: 60,
     backgroundColor: "#6cdfef"
   },
+  selectedOptionButton: {
+    backgroundColor: '#f878b5',
+  },
   image: {
     width: 40,
     height: 40,
@@ -179,6 +243,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  answerBlock: {
+    height: 55
+      },
+      handleAnswer : {
+        color: "#ffffff",
+        padding: 16,
+        fontSize: 14
+      },
   nextButton: {
     backgroundColor: "#fff",
     borderRadius: 16,
@@ -186,7 +258,6 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 30,
     paddingRight: 30,
-    marginTop: 55,
     alignItems: "center",
     justifyContent: "center",
     width: 100,

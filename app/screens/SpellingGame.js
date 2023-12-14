@@ -20,7 +20,7 @@ const questions = [
   
   function SpellingGame() {
     const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [score, setScore] = useState(0);
+    const [score, setScore] = useState(false);
     const [answer, setAnswer] = useState(questions[currentQuestion].answer);
     const [selectedLetters, setSelectedLetters] = useState(
       Array(answer.length).fill("")
@@ -39,7 +39,7 @@ const questions = [
   
     const handleNextPress = () => {
       if (selectedLetters.join("") === answer.join("")) {
-        setScore(score + 1);
+        // setScore(score + 1);
         if (currentQuestion < questions.length - 1) {
           setCurrentQuestion(currentQuestion + 1);
           setAnswer(questions[currentQuestion + 1].answer);
@@ -48,9 +48,11 @@ const questions = [
           );
           setSelectedOption("");
         } else {
-          alert(`Game Over! Your score is ${score}/${questions.length}`);
+          setScore(true);
+
+          // alert(`Game Over! Your score is ${score}/${questions.length}`);
           setCurrentQuestion(0);
-          setScore(0);
+          // setScore(0);
           setAnswer(questions[0].answer);
           setSelectedLetters(Array(questions[0].answer.length).fill(""));
           setSelectedOption("");
@@ -59,10 +61,33 @@ const questions = [
         alert("Please fill all the blanks correctly!");
       }
     };
+    const handleRestartButtonClick = () => {
+      setCurrentQuestion(0);
+      setScore(0);
+      setSelectedOption(null);
+    };
   
     return (
       <View style={styles.container}>
             <ImageBackground source={require('../assets/images/blob3.png')} resizeMode="contain"   style={styles.bgimage}>
+            {score ? (
+        <View style={styles.scoreContainer}>
+          <Text style={{ fontSize: 60 }}>🎉</Text>
+          <Text style={styles.scoreText}>Well Done!</Text>
+          <TouchableOpacity
+            style={styles.restartButton}
+            onPress={handleRestartButtonClick}
+          >
+            <Text style={styles.restartButtonText}>Play again</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={handleRestartButtonClick}
+          >
+            <Text style={styles.restartButtonText}>Back to Games</Text>
+          </TouchableOpacity>
+        </View>
+      ) : (
 <View style={styles.subContainer}>
               <View style={styles.imageContainer}>
               <Image source={questions[currentQuestion].image} style={styles.image} />
@@ -92,6 +117,11 @@ const questions = [
             </TouchableOpacity>
           ))}
         </View>
+        <View style={styles.answerBlock}>
+          <Text style={styles.handleAnswer}>
+          {selectedLetters.join("") === answer.join("") ? 'Correct ✅'
+            : ''}</Text>
+        </View>
         <TouchableOpacity
           style={[
             styles.nextButton,
@@ -107,6 +137,7 @@ const questions = [
           ]}>Next</Text>
         </TouchableOpacity>
         </View>
+           )}
         </ImageBackground>
       </View>
     );
@@ -124,6 +155,39 @@ const questions = [
     bgimage: {
       flex: 1,
       justifyContent: 'center',
+    },
+    scoreContainer: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      width: 350
+    },
+    scoreText: {
+      fontSize: 28,
+      color: "#fff",
+      fontWeight: "bold",
+      marginBottom: 16,
+      marginTop: 12
+    },
+    restartButton: {
+      backgroundColor: "#f878b5",
+      padding: 12,
+      borderRadius: 8,
+      width: 160,
+      marginTop: 28
+    },
+    backButton: {
+      backgroundColor: "#6cdfef",
+      padding: 12,
+      borderRadius: 8,
+      width: 160,
+      marginTop: 18
+    },
+    restartButtonText: {
+      color: "#000",
+      fontSize: 16,
+      fontWeight: "bold",
+      textAlign: "center"
     },
     subContainer: {
       width: 350,
@@ -203,6 +267,14 @@ const questions = [
       fontSize: 22,
       fontWeight: "bold",
     },
+    answerBlock: {
+      height: 25
+        },
+        handleAnswer : {
+          color: "#ffffff",
+          padding: 15,
+          fontSize: 14
+        },
     nextButton: {
       backgroundColor: "#fff",
       borderRadius: 16,

@@ -38,6 +38,24 @@ const questions = [
     ],
     correctOption: 2,
   },
+  {
+    word: "watch",
+    options: [
+      { id: 1, image: require("../assets/images/quizimages/pairs/bell.png") },
+      { id: 2, image: require("../assets/images/quizimages/pairs/cow.png") },
+      { id: 3, image: require("../assets/images/quizimages/pairs/watch.png") },
+    ],
+    correctOption: 3,
+  },
+  {
+    word: "bird",
+    options: [
+      { id: 1, image: require("../assets/images/quizimages/pairs/bird.png") },
+      { id: 2, image: require("../assets/images/quizimages/pairs/queen.png") },
+      { id: 3, image: require("../assets/images/quizimages/pairs/phone.png") },
+    ],
+    correctOption: 1,
+  },
 ];
 
 const App = () => {

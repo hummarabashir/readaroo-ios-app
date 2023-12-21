@@ -16,6 +16,21 @@ const questions = [
       answer: ["s", "u", "n"],
       options: ["s", "g", "x", "n", "j", "u"],
     },
+    {
+      image: require("../assets/images/quizimages/bird.png"),
+      answer: ["b", "i", "r", "d"],
+      options: ["i", "d", "s", "r", "b", "u"],
+    },
+    {
+      image: require("../assets/images/quizimages/bat.png"),
+      answer: ["b", "a", "t"],
+      options: ["a", "q", "t", "h", "b", "n"],
+    },
+    {
+      image: require("../assets/images/quizimages/boat.png"),
+      answer: ["b", "o", "a", "t"],
+      options: ["c", "t", "o", "k", "b", "a"],
+    },
   ];
   
   function SpellingGame() {

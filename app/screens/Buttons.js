@@ -40,7 +40,7 @@ export default function Buttons({navigation}) {
     // StatusBar.setBarStyle('dark-content', true);
     return (
     <>
-      {/* <StatusBar translucent barStyle="light-content" /> */}
+      <StatusBar translucent barStyle="light-content" hidden={false}/>
      <SafeAreaView style={styles.container} >
      <ScrollView style={styles.scrollView}>
 
@@ -53,10 +53,11 @@ export default function Buttons({navigation}) {
                 {/* <Pressable style={styles.box}   title="Press me"
         onPress={() => Alert.alert('Phase 2')}> */}
         <View style={styles.pressbox}>
-          <Pressable style={styles.box} onPress={() => navigation.navigate('Phase2')}>
+          <Pressable style={styles.box} onPress={() => navigation.navigate('AlphaTots')}>
+          <Text style={styles.heading}>Alpha Tots</Text>
+
                   <View style={{width: "60%"}}>
-                  <Text style={styles.heading}>Phase 2</Text>
-                  <Text style={styles.phrasetext}>19 Letters</Text>
+                  <Text style={styles.phrasetext}>26 Letters</Text>
                   </View>
                   <View style={{width: "40%"}}>
                   <Image style={styles.boxImage} source={require('../assets/images/bird.png')}/>
@@ -64,9 +65,11 @@ export default function Buttons({navigation}) {
                   </View>
                 </Pressable>
                 <Pressable style={styles.box2} onPress={() => navigation.navigate('AlphaPhonics')}>
+                <Text style={styles.heading}>Alpha Phonics</Text>
+
                   <View style={{width: "60%"}}>
-                  <Text style={styles.heading}>Phase 3</Text>
-                  <Text style={styles.phrasetext}>25 Letters</Text>
+                  
+                  <Text style={styles.phrasetext}>26 Letters</Text>
                   </View>
                   <View style={{width: "40%"}}>
                   <Image style={styles.boxImage}
@@ -75,9 +78,10 @@ export default function Buttons({navigation}) {
                 </Pressable>
 
                 <Pressable style={styles.box3} onPress={() => navigation.navigate('Playcard')}>
+                <Text style={styles.heading}>Flash Cards</Text>
+
                   <View style={{width: "60%"}}>
-                  <Text style={styles.heading}>Phase 5</Text>
-                  <Text style={styles.phrasetext}>22 Letters</Text>
+                  <Text style={styles.phrasetext}>22 Cards</Text>
                   </View>
                   <View style={{width: "40%"}}>
                   <Image style={styles.boxImage}
@@ -86,8 +90,9 @@ export default function Buttons({navigation}) {
                 </Pressable>
 
                 <Pressable style={styles.box4} onPress={() => navigation.navigate('Games')}>
+                <Text style={styles.heading}>Games</Text>
+
                   <View style={{width: "60%"}}>
-                  <Text style={styles.heading}>Games</Text>
                   <Text style={styles.phrasetext}>Practice your sounds</Text>
                   </View>
                   <View style={{width: "40%"}}>
@@ -125,7 +130,7 @@ export default function Buttons({navigation}) {
     image: {
     width: 60,
     height: 60,  
-    marginTop: 16,
+    // marginTop: 16,
   },
 heading: {
   fontWeight: "bold",
@@ -148,7 +153,7 @@ box: {
   borderRadius: 16,
   padding: 20,
   color: '#ffffff',
-  marginTop: 26,
+  marginTop: 22,
   flexDirection: 'row',
   flexWrap: 'wrap',
   
@@ -187,6 +192,6 @@ boxImage: {
   width: 34,
   height: 34,
   marginLeft: 30,
-  marginTop: 20,
+  marginTop: 0,
 },
 });

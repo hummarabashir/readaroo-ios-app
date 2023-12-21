@@ -37,6 +37,13 @@ const questions = [
         options: ["s", "k", "o"],
         correctOption: "s",
       },
+      {
+        id: 6,
+        name: "Fox",
+        image: require("../assets/images/quizimages/fox.png"),
+        options: ["x", "o", "f"],
+        correctOption: "f",
+      },
   ];
 
 const QuizScreen = ({ image, options, onSelect }) => {
@@ -223,6 +230,8 @@ const styles = StyleSheet.create({
     bgimage: {
       flex: 1,
       justifyContent: 'center',
+      alignItems: "center",
+
     },
     imageContainer: {
         // flex: 1,

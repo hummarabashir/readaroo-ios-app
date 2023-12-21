@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 import {createRootNavigator} from './router';
 import Home from './screens/Home';
 import Buttons from './screens/Buttons';
-import Phase2 from './screens/Phase2';
+import AlphaTots from './screens/AlphaTots';
 import AlphaPhonics from './screens/AlphaPhonics';
 import Playcard from './screens/Playcard';
 import Quiz from './screens/Quiz';
@@ -22,17 +22,100 @@ export default function App() {
       <NavigationContainer> 
         <Stack.Navigator> 
           <Stack.Screen name="Home" component = {Home} options={{ headerShown: false }} /> 
-          <Stack.Screen name="Buttons" component = {Buttons} /> 
-          <Stack.Screen name="Phase2" component = {Phase2} />
-          <Stack.Screen name="AlphaPhonics" component = {AlphaPhonics} />
-          <Stack.Screen name="Playcard" component = {Playcard} />
-          <Stack.Screen name="Quiz" component = {Quiz} />
-          <Stack.Screen name="Games" component = {Games} />
-          <Stack.Screen name="MatchingPairs" component={MatchingPairs} options={{ headerTitle: "Matching Pairs" }} />
+          <Stack.Screen name="Buttons" component = {Buttons}   options={{
+      title: '',
+      
+      headerStyle: {
+        backgroundColor: '#1f354b',
+      },
+      headerTintColor: '#6cdfef',
+      headerShadowVisible: false,
+      headerTitleStyle: {
+        color: 'white'
+      },
+      // headerRight: () => (
+      //   <Button
+      //     onPress={() => alert('This is a button!')}
+      //     title="Info"
+      //     color="#fff"
+      //   />
+      // ),
+      headerBackTitle: 'home',
+    }}/> 
+          <Stack.Screen name="AlphaTots" component = {AlphaTots} options={{ headerTitle: "AlphaTots",     headerStyle: {
+        backgroundColor: '#1f354b',
+      },
+      headerTintColor: '#6cdfef',
+      headerShadowVisible: false,
+      headerTitleStyle: {
+        color: 'white'
+      }, }}/>
+          <Stack.Screen name="AlphaPhonics" component = {AlphaPhonics} options={{     headerStyle: {
+        backgroundColor: '#1f354b',
+      },
+      headerTintColor: '#6cdfef',
+      headerShadowVisible: false,
+      headerTitleStyle: {
+        color: 'white'
+      },}} />
+          <Stack.Screen name="Playcard" component = {Playcard} options={{     headerStyle: {
+        backgroundColor: '#1f354b',
+      },
+      headerTintColor: '#6cdfef',
+      headerShadowVisible: false,
+      headerTitleStyle: {
+        color: 'white'
+      },}} />
+          <Stack.Screen name="Quiz" component = {Quiz} options={{ headerTitle: "Trivia Quiz",  headerStyle: {
+        backgroundColor: '#1f354b',
+      },
+      headerTintColor: '#6cdfef',
+      headerShadowVisible: false,
+      headerTitleStyle: {
+        color: 'white'
+      },
+    }} />
+          <Stack.Screen name="Games" component = {Games} options={{     headerStyle: {
+        backgroundColor: '#1f354b',
+      },
+      headerTintColor: '#6cdfef',
+      headerShadowVisible: false,
+      headerTitleStyle: {
+        color: 'white'
+      },}}/>
+          <Stack.Screen name="MatchingPairs" component={MatchingPairs} options={{ headerTitle: "Matching Pairs" , headerStyle: {
+        backgroundColor: '#1f354b',
+      },
+      headerTintColor: '#6cdfef',
+      headerShadowVisible: false,
+      headerTitleStyle: {
+        color: 'white'
+      },}} />
           {/* options={{ headerShown: false }} */}
-          <Stack.Screen name="SpellingGame" component={SpellingGame} options={{ headerTitle: "Spelling Game" }} />
-          <Stack.Screen name="ReadingGame" component={ReadingGame} options={{ headerTitle: "Reading Game" }} />
-          <Stack.Screen name="WordGame" component={WordGame} options={{ headerTitle: "Word Game" }} />
+          <Stack.Screen name="SpellingGame" component={SpellingGame} options={{ headerTitle: "Spelling Game", headerStyle: {
+        backgroundColor: '#1f354b',
+      },
+      headerTintColor: '#6cdfef',
+      headerShadowVisible: false,
+      headerTitleStyle: {
+        color: 'white'
+      }, }} />
+          <Stack.Screen name="ReadingGame" component={ReadingGame} options={{ headerTitle: "Reading Game", headerStyle: {
+        backgroundColor: '#1f354b',
+      },
+      headerTintColor: '#6cdfef',
+      headerShadowVisible: false,
+      headerTitleStyle: {
+        color: 'white'
+      }, }} />
+          <Stack.Screen name="WordGame" component={WordGame} options={{ headerTitle: "Word Game", headerStyle: {
+        backgroundColor: '#1f354b',
+      },
+      headerTintColor: '#6cdfef',
+      headerShadowVisible: false,
+      headerTitleStyle: {
+        color: 'white'
+      }, }} />
         </Stack.Navigator> 
       </NavigationContainer> 
     );

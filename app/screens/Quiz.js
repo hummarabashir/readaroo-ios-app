@@ -37,6 +37,13 @@ const animalData = [
     options: ["Parrot", "Duck", "Sparrow", "Dove"],
     correctOption: "Duck",
   },
+  {
+    id: 6,
+    name: "Cake",
+    image: require("../assets/images/quizimages/cake.png"),
+    options: ["Biscuit", "Chocolate", "Cookie", "Cake"],
+    correctOption: "Cake",
+  },
 ];
 
 export default function App() {
@@ -46,6 +53,7 @@ export default function App() {
   const [selectedOpt, setSelectedOpt] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResult, setShowResult] = useState(false);
+  const [aniData, setAniData] = useState(0);
 
 
   const handleAnswerButtonClick = (selectedOption) => {
@@ -95,6 +103,9 @@ export default function App() {
     setSelectedAnswer(null);
     setSelectedOpt(null);
     setShowResult(false);
+    const shuffledData = animalData.sort(() => Math.random() - 0.5);
+    setAniData(shuffledData);
+
   };
 
   return (

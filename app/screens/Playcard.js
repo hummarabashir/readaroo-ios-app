@@ -15,23 +15,160 @@ const FlashCardsApp = () => {
 
   const cards = [
     {
+      image: require("../assets/images/quizimages/bird.png"),
+      heading: "Bird",
+      letterCase: "Bb",
+      audio: require("../assets/audio/playcard/bird.mp3"),
+      backgroundColor: "#6b74e0", // Add background color for Card 3
+    },
+    {
+      image: require("../assets/images/quizimages/cake.png"),
+      heading: "Cake",
+      letterCase: "Cc",
+      audio: require("../assets/audio/playcard/cake.mp3"),
+      backgroundColor: "#11c684", // Add background color for Card 3
+    },
+    {
       image: require("../assets/images/quizimages/cat.png"),
       heading: "Cat",
-      audio: require("../assets/audio/A.m4a"),
+      letterCase: "Cc",
+      audio: require("../assets/audio/playcard/cat.mp3"),
       backgroundColor: "#f878b5", // Add background color for Card 1
     },
     {
       image: require("../assets/images/quizimages/bus.png"),
       heading: "Bus",
-      audio: require("../assets/audio/B.m4a"),
+      letterCase: "Bb",
+      audio: require("../assets/audio/playcard/bus.mp3"),
       backgroundColor: "#6b74e0", // Add background color for Card 2
     },
     {
         image: require("../assets/images/quizimages/duck.png"),
         heading: "Duck",
-        audio: require("../assets/audio/C.m4a"),
+        letterCase: "Dd",
+        audio: require("../assets/audio/playcard/duck.mp3"),
         backgroundColor: "#6cdfef", // Add background color for Card 3
       },
+      {
+        image: require("../assets/images/quizimages/king.png"),
+        heading: "King",
+        letterCase: "Kk",
+        audio: require("../assets/audio/playcard/king.mp3"),
+        backgroundColor: "#f878b5", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/leaf.png"),
+        heading: "Leaf",
+        letterCase: "Ll",
+        audio: require("../assets/audio/playcard/leaf.mp3"),
+        backgroundColor: "#6b74e0", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/igloo.png"),
+        heading: "Igloo",
+        letterCase: "Ii",
+        audio: require("../assets/audio/playcard/igloo.mp3"),
+        backgroundColor: "#11c684", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/map.png"),
+        heading: "Map",
+        letterCase: "Mm",
+        audio: require("../assets/audio/playcard/map.mp3"),
+        backgroundColor: "#f878b5", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/octopus.png"),
+        heading: "Octopus",
+        letterCase: "Oo",
+        audio: require("../assets/audio/playcard/octopus.mp3"),
+        backgroundColor: "#6cdfef", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/socks.png"),
+        heading: "Socks",
+        letterCase: "Ss",
+        audio: require("../assets/audio/playcard/socks.mp3"),
+        backgroundColor: "#11c684", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/umbrella.png"),
+        heading: "Umbrella",
+        letterCase: "Uu",
+        audio: require("../assets/audio/playcard/umbrella.mp3"),
+        backgroundColor: "#f878b5", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/queen.png"),
+        heading: "Queen",
+        letterCase: "Qq",
+        audio: require("../assets/audio/playcard/queen.mp3"),
+        backgroundColor: "#6b74e0", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/cow.png"),
+        heading: "Cow",
+        letterCase: "Cc",
+        audio: require("../assets/audio/playcard/cow.mp3"),
+        backgroundColor: "#11c684", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/tree.png"),
+        heading: "Tree",
+        letterCase: "Tt",
+        audio: require("../assets/audio/playcard/tree.mp3"),
+        backgroundColor: "#6cdfef", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/book.png"),
+        heading: "Book",
+        letterCase: "Bb",
+        audio: require("../assets/audio/playcard/book.mp3"),
+        backgroundColor: "#6b74e0", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/bat.png"),
+        heading: "Bat",
+        letterCase: "Bb",
+        audio: require("../assets/audio/playcard/bat.mp3"),
+        backgroundColor: "#f878b5", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/fish.png"),
+        heading: "Fish",
+        letterCase: "Ff",
+        audio: require("../assets/audio/playcard/fish.mp3"),
+        backgroundColor: "#11c684", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/boat.png"),
+        heading: "Boat",
+        letterCase: "Bb",
+        audio: require("../assets/audio/playcard/boat.mp3"),
+        backgroundColor: "#f878b5", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/fox.png"),
+        heading: "Fox",
+        letterCase: "Ff",
+        audio: require("../assets/audio/playcard/fox.mp3"),
+        backgroundColor: "#6cdfef", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/sun.png"),
+        heading: "Sun",
+        letterCase: "Ss",
+        audio: require("../assets/audio/playcard/sun.mp3"),
+        backgroundColor: "#6b74e0", // Add background color for Card 3
+      },
+      {
+        image: require("../assets/images/quizimages/sheep.png"),
+        heading: "Sheep",
+        letterCase: "Ss",
+        audio: require("../assets/audio/playcard/sheep.mp3"),
+        backgroundColor: "#11c684", // Add background color for Card 3
+      },
+  
     // Add more cards here
   ];
 
@@ -197,10 +334,16 @@ const playAudio = async () => {
         <View style={styles.bdayMessage}>
         <Text style={styles.bdayMessageText}>
         Fun Facts!!
-        {"\n"} 
-          Ana, yet another year that we get to celebrate together! Hope you have
-          a great day
-          
+        {/* {"\n"}  */}
+        </Text>
+        <Text style={styles.factsText}>
+          Letter Case: {currentCard.letterCase}
+        </Text>
+        <Text style={styles.factsText}>
+          Pronounication:
+        </Text>
+        <Text style={styles.factsText}>
+          Phonetic Sound:
         </Text>
       </View>
       {/* </View> */}
@@ -317,7 +460,8 @@ const styles = StyleSheet.create({
     flexGrow: 0
   },
   bdayMessage: {
-    maxWidth: "72%",
+    width: 260,
+    marginTop: -15,
     padding: 24,
     fontFamily: "Shadows Into Light",
     fontSize: 18,
@@ -326,9 +470,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#F1EDE9",
     background: 'repeating-linear-gradient(#F1EDE9, #F1EDE9 31px, #94ACD4 31px, #94ACD4 32px)',
     boxShadow: '5px 5px 15px rgba(0,0,0, .15)',
+    marginBottom: 15
   },
   bdayMessageText: {
-    marginBottom: 16,
+    marginBottom: 10,
+    textDecorationLine: "underline",
+    fontWeight: "bold"
   },
   playView: {
     marginBottom: 20,
@@ -343,7 +490,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "80%",
-    marginBottom: 30
+    marginBottom: 60,
+    marginTop: 20
   },
   navigationButton: {
     flex: 1,

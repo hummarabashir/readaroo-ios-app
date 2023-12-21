@@ -35,7 +35,7 @@ import Greetings from './screens/greetings';
 
     return (
     <>
-     <StatusBar barStyle= "dark-content" hidden= {false} backgroundColor="#00BCD4" translucent= {true} />
+     <StatusBar barStyle= "light-content" hidden= {false} backgroundColor="#00BCD4" translucent= {true} />
      <SafeAreaView style={styles.container}>
      <ScrollView style={styles.scrollView}>
 
@@ -135,7 +135,7 @@ box: {
   borderRadius: 16,
   padding: 20,
   color: '#ffffff',
-  marginTop: 50,
+  marginTop: 38,
   flexDirection: 'row',
   flexWrap: 'wrap',
 },

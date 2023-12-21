@@ -37,7 +37,9 @@ import { before } from 'node:test';
 
 const Home = ({navigation}) => (
   <>
-  <StatusBar style="light" />
+  <View style={{backgroundColor: "black"}}>
+  <StatusBar barStyle = "light-content" hidden = {true} translucent />
+  </View>
   <View style={styles.container}>
     <ImageBackground source={require('../assets/images/blob3.png')} resizeMode="contain"   style={styles.bgimage}>
       {/* <Text style={styles.text}>Inside</Text> */}
@@ -92,6 +94,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#1f354b',
     fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif'
   },
+  StatusBar: {
+    backgroundColor: 'red'
+},
   bgimage: {
     flex: 1,
     justifyContent: 'center',
